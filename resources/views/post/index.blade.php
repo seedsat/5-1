@@ -26,6 +26,18 @@
                     </form>
                 </div>
             </div>
+            @foreach ($posts as $post)
+                <div class="sns">
+                    <div class="sns_top">
+                        <h5>{{ $post->name }}</h5>
+                        <p>{{ $post->created_at }}</p>
+                    </div>
+                    <div class="sns_bottom">
+                        <p>{{ $post->body }}</p>
+                        <span><a href="">削除</a></span>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection
