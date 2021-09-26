@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;;
+}
+
+.contents {
+    width: 1000px;
+    height: 1000px;
+    margin: 0 auto;
+}
+
+.posts {
+    width: 500px;
+    background-color: #fff;;
+    border: solid 1px lightgray;
+    margin: 0 auto;
+}
+
+.top {
+    margin: 0 auto;
+    padding: 15px;
+    border-bottom: solid 1px lightgray ;
+}
+
+.bottom {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+}
+
+.submit {
+    display: block;
+    margin-left: auto;
+    margin-top: 10px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
