@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Posts;
 
 
@@ -14,7 +15,8 @@ class PostController extends Controller
     {
         $posts = DB::table('posts')
             ->leftJoin('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.id', 'posts.body', 'posts.created_at', 'users.name')
+            ->select('posts.id', 'posts.body', 'user_id', 'posts.created_at', 'users.name')
+            ->where('deleted_at', '=', null)
             ->orderBy('posts.id', 'desc')
             ->get();
 
@@ -35,5 +37,28 @@ class PostController extends Controller
         $posts->fill($form)->save(); // postされたデータを保存
 
         return redirect('/'); // TOPページにリダイレクト
+    }
+
+    // SNS削除機能
+    public function destroy(Request $request)
+    {
+        // 送られてきたIDから検索して論理削除
+        $post = Posts::find($request->id);
+
+        if(isset($post))
+        {
+            if($post->user_id == Auth::user()->id)
+            {
+                Posts::find($request->id)->delete();
+                return redirect('/');
+            }
+            else
+            {
+                echo '削除できませんでした。';
+            }
+        }
+        else{
+            echo 'データがありません。';
+        }
     }
 }

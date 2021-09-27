@@ -33,8 +33,10 @@
                         <p>{{ $post->created_at }}</p>
                     </div>
                     <div class="sns_bottom">
-                        <p>{{ $post->body }}</p>
-                        <span><a href="">削除</a></span>
+                        <p>{{ str_limit($post->body, 100) }}</p>
+                        @if ($post->user_id == Auth::user()->id)
+                            <span><a href="{{ action('PostController@destroy', ['id' => $post->id]) }}">削除</a></span>
+                        @endif
                     </div>
                 </div>
             @endforeach

@@ -18,6 +18,7 @@ Route::get('welcome', 'Admin\NewsController@welcome');
 
 Route::get('/', 'PostController@index')->middleware('auth');
 Route::post('post/create', 'PostController@create')->middleware('auth');
+Route::get('/post/destroy', 'PostController@destroy')->middleware('auth');
 
 Auth::routes();
 
