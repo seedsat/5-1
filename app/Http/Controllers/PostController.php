@@ -34,6 +34,6 @@ class PostController extends Controller
 
         $posts->fill($form)->save(); // postされたデータを保存
 
-        return redirect('post'); // TOPページにリダイレクト
+        return redirect('/'); // TOPページにリダイレクト
     }
 }
