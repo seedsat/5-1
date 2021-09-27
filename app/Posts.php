@@ -10,6 +10,8 @@ class Posts extends Model
     use SoftDeletes;
     protected $guarded = array('id');
 
+    protected $dates = ['created_at'];
+
     public static $rules = array(
         'body' => 'required|max:255'
     );

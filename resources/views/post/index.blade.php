@@ -22,7 +22,7 @@
                         @csrf <!-- formの中にこの記述を書かなければ【419】エラーが出る -->
                         <input type="text" name="body" class='input' placeholder="いまどうしてる？">
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">　<!-- ログインしていなければAuth::user()は使えない -->
-                        <input type="submit" value="つぶやく" class="submit">
+                        <input type="submit" value="つぶやく" class="submit alert-success">
                     </form>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="sns">
                     <div class="sns_top">
                         <h5>{{ $post->name }}</h5>
-                        <p>{{ $post->created_at }}</p>
+                        <p><?php echo date('Y/m/d H:i', strtotime($post->created_at)); ?></p>
                     </div>
                     <div class="sns_bottom">
                         <p>{{ str_limit($post->body, 100) }}</p>
