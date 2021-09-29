@@ -26,16 +26,16 @@
                     </form>
                 </div>
             </div>
-            @foreach ($posts as $post)
+            @foreach ($results as $result)
                 <div class="sns">
                     <div class="sns_top">
-                        <h5>{{ $post->name }}</h5>
-                        <p><?php echo date('Y/m/d H:i', strtotime($post->created_at)); ?></p>
+                        <h5>{{ $result->name }}</h5>
+                        <p>{{ $result->created_at->format('Y/m/d H:i') }}</p>
                     </div>
                     <div class="sns_bottom">
-                        <p>{{ str_limit($post->body, 100) }}</p>
-                        @if ($post->user_id == Auth::user()->id)
-                            <span><a href="{{ action('PostController@destroy', ['id' => $post->id]) }}">削除</a></span>
+                        <p>{{ str_limit($result->body, 100) }}</p>
+                        @if ($result->user_id == Auth::user()->id)
+                            <span><a href="{{ action('PostController@destroy', ['id' => $result->id]) }}">削除</a></span>
                         @endif
                     </div>
                 </div>
